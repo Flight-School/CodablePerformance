@@ -20,32 +20,37 @@ public struct Airport: Codable {
 }
 
 extension Airport {
-    public init(json: [String: Any]) {
+    public init(json: [String: Any]) throws {
         guard let name = json["name"] as? String,
             let iata = json["iata"] as? String,
             let icao = json["icao"] as? String,
             let coordinates = json["coordinates"] as? [Double],
             let runways = json["runways"] as? [[String: Any]]
         else {
-            fatalError("Cannot initialize Airport from JSON")
+          throw NSError()
         }
         
         self.name = name
         self.iata = iata
         self.icao = icao
         self.coordinates = coordinates
-        self.runways = runways.map { Runway(json: $0) }
+      do {
+        self.runways = try runways.map { try Runway(json: $0) }
+      } catch (let e) {
+        throw e
+      }
+      
     }
 }
 
 extension Airport.Runway {
-    public init(json: [String: Any]) {
+    public init(json: [String: Any]) throws {
         guard let direction = json["direction"] as? String,
             let distance = json["distance"] as? Int,
             let surfaceRawValue = json["surface"] as? String,
             let surface = Surface(rawValue: surfaceRawValue)
-            else {
-                fatalError("Cannot initialize Runway from JSON")
+        else {
+          throw NSError.init()
         }
         
         self.direction = direction

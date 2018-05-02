@@ -22,10 +22,10 @@ class PerformanceTests: XCTestCase {
         }
     }
     
-    func testPerformanceJSONSerialization() {        
+    func testPerformanceJSONSerialization() {
         self.measure {
             let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any]]
-            let airports = json.map{ Airport(json: $0) }
+            let airports = json.map{ try! Airport(json: $0) }
             XCTAssertEqual(airports.count, count)
         }
     }
