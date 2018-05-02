@@ -21,15 +21,12 @@ public struct Airport: Codable {
 
 extension Airport {
     public init(json: [String: Any]) throws {
-        guard let name = json["name"] as? String,
-            let iata = json["iata"] as? String,
-            let icao = json["icao"] as? String,
-            let coordinates = json["coordinates"] as? [Double],
-            let runways = json["runways"] as? [[String: Any]]
-        else {
-          throw NSError()
-        }
-        
+        guard let name = json["name"] as? String else { throw NSError() }
+        guard let iata = json["iata"] as? String else { throw NSError() }
+        guard let icao = json["icao"] as? String else { throw NSError() }
+        guard let coordinates = json["coordinates"] as? [Double] else { throw NSError() }
+        guard let runways = json["runways"] as? [[String: Any]] else { throw NSError() }
+      
         self.name = name
         self.iata = iata
         self.icao = icao
@@ -45,13 +42,10 @@ extension Airport {
 
 extension Airport.Runway {
     public init(json: [String: Any]) throws {
-        guard let direction = json["direction"] as? String,
-            let distance = json["distance"] as? Int,
-            let surfaceRawValue = json["surface"] as? String,
-            let surface = Surface(rawValue: surfaceRawValue)
-        else {
-          throw NSError.init()
-        }
+        guard let direction = json["direction"] as? String else { throw NSError() }
+        guard let distance = json["distance"] as? Int else { throw NSError() }
+        guard let surfaceRawValue = json["surface"] as? String else { throw NSError() }
+        guard let surface = Surface(rawValue: surfaceRawValue) else { throw NSError() }
         
         self.direction = direction
         self.distance = distance
