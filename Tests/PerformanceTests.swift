@@ -6,7 +6,6 @@ let count = 10000 // 1, 10, 100, 1000, or 10000
 let data = airportsJSON(count: count)
 
 class PerformanceTests: XCTestCase {
-
     override class var defaultPerformanceMetrics: [XCTPerformanceMetric] {
         return [
             XCTPerformanceMetric(rawValue: "com.apple.XCTPerformanceMetric_WallClockTime"),
