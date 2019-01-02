@@ -1,4 +1,4 @@
 language: objective-c
 xcode_project: CodablePerformance.xcodeproj
 xcode_scheme: CodablePerformance
-xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
+xcode_destination: platform=iOS Simulator,OS=11.4,name=iPad Pro (9.7-inch)
