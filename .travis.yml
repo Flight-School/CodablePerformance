@@ -1,0 +1,4 @@
+language: objective-c
+xcode_project: CodablePerformance.xcodeproj
+xcode_scheme: CodablePerformance
+xcode_destination: platform=macOs
